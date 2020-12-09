@@ -12,7 +12,7 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | bhyve/arm64 | andrew/UPB | -- |
 | Merging Morello support (from CHERI) | brooks/jhb | -- |
 | Convert stdio fileno to int | jhb | -- |
-| Wireguard (kernel) | mmacy | -- |
+| Wireguard (kernel) | mmacy | [r368163](https://svnweb.freebsd.org/base?view=revision&revision=368163) |
 
 
 # Need
@@ -60,7 +60,7 @@ Things that would be nice to have but aren't critical
 | brand new shell (or import something else) | bapt/manu | -- |
 | chacha20+poly1035 AEAD support for KTLS | jhb | -- |
 | chacha20+poly1035 AEAD support for IPsec | jhb | -- |
-| exFat | delphij / cem | -- |
+| exFat | delphij / cem | [D27376](https://reviews.freebsd.org/D27376) |
 | suspend/resume arm64 + riscv | mhorne + will seek mentorship | -- |
 | low power idle/S0ix support (see bwidawsky's earlier work) | jhb? | |
 | dwc_mmc SDIO | bz | -- |
