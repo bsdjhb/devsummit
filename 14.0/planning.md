@@ -7,12 +7,16 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 
 | Thing                     | Owner    | Committed |
 | --                        | --       | -- |
-| nvlist(9)-based interface in /dev/sndstat| khng300@gmail.com | [D26884](https://reviews.freebsd.org/D26884) |
-| Hole-punching for vnode | khng300@gmail.com | |
+| nvlist(9)-based interface in /dev/sndstat| khng | [c96151d33509](https://cgit.freebsd.org/src/commit/?id=c96151d33509655efb7fb26768cb56a041c176f1) |
+| Hole-punching for vnode | khng | [D27194](https://reviews.freebsd.org/D27194) |
 | bhyve/arm64 | andrew/UPB | -- |
 | Merging Morello support (from CHERI) | brooks/jhb | -- |
 | Convert stdio fileno to int | jhb | -- |
-| Wireguard (kernel) | mmacy | [r368163](https://svnweb.freebsd.org/base?view=revision&revision=368163) |
+| bhyve configuration | jhb | [621b5090487d](https://cgit.freebsd.org/src/commit/?id=621b5090487de9fed1b503769702a9a2a27cc7bb)
+| Modern virtio (1.x) client drivers | bryanv | [9da9560c4dd3](https://cgit.freebsd.org/src/commit/sys/dev/virtio/virtio.c?id=9da9560c4dd3556519cd391a04f0db157dc3c295) |
+| chacha20+poly1035 AEAD support for KTLS | jhb | [9c64fc40290e](https://cgit.freebsd.org/src/commit/?id=9c64fc40290e08f6dc6b75aa04084b04e48a61af) |
+| chacha20+poly1035 AEAD support for IPsec | ae | -- |
+
 
 
 # Need
@@ -55,11 +59,8 @@ Things that would be nice to have but aren't critical
 | ARM LIMA/Panfrost GPU support | br/manu | -- |
 | Cellular Drivers from ${Vendor} | gnn | |
 | 9pfs client (pass filesystem from host to guest) | swills / stevek | -- |
-| Modern virtio (1.x) client drivers | bryanv? / jhb | -- |
 | arm64 Scalable Vector Extension | mhorne | -- |
 | brand new shell (or import something else) | bapt/manu | -- |
-| chacha20+poly1035 AEAD support for KTLS | jhb | -- |
-| chacha20+poly1035 AEAD support for IPsec | jhb | -- |
 | exFat | delphij / cem | [D27376](https://reviews.freebsd.org/D27376) |
 | suspend/resume arm64 + riscv | mhorne + will seek mentorship | -- |
 | low power idle/S0ix support (see bwidawsky's earlier work) | jhb? | |
@@ -72,7 +73,7 @@ Things we might like to deprecate for 14.0.  Further discussion may be required 
 
 | Thing                           | Owner     | Committed |
 | --                              | --        | -- |
-| asym crypto support via /dev/crypto | jhb | deprecation committed |
+| asym crypto support via /dev/crypto | jhb | [76681661be28](https://cgit.freebsd.org/src/commit/?id=76681661be2859622872c3a8a1bd68260403ddd0) |
 | Firewire support | imp | -- |
 | armv6? | imp/manu | -- |
 | telnetd | adrian/allanjude | -- |
@@ -82,7 +83,7 @@ Things we might like to deprecate for 14.0.  Further discussion may be required 
 | arm SoC support review (maybe for 13) | imp | -- |
 | sendmail | manu/??? | -- |
 | boot loader 4th support | imp | -- |
-| svnlite | lwhsu | -- |
+| svnlite | lwhsu | disabled in head [a2bc17474b96](https://cgit.freebsd.org/src/commit/?id=a2bc17474b962ba9e29c4526356203fe48a549eb) |
 | NIS "crypto" | cem | -- |
 | NIS | kaktus | -- |
 
