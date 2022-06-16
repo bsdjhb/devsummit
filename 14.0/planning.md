@@ -12,6 +12,15 @@ Things that have been committed to the tree.
 | Modern virtio (1.x) client drivers | bryanv | [9da9560c4dd3](https://cgit.freebsd.org/src/commit/sys/dev/virtio/virtio.c?id=9da9560c4dd3556519cd391a04f0db157dc3c295) |
 | chacha20+poly1035 AEAD support for KTLS | jhb | [9c64fc40290e](https://cgit.freebsd.org/src/commit/?id=9c64fc40290e08f6dc6b75aa04084b04e48a61af) |
 | Sound pin patches from GitHub | imp | [ef790cc7407e](https://cgit.freebsd.org/src/commit/?id=ef790cc7407e827db9563d08a52a71ab36436986) |
+| Hole-punching for vnode | khng | [de2e15295966](https://cgit.freebsd.org/src/commit/?id=de2e15295966) |
+| kvmclock driver for freebsd guests | allanjude | [6fa88a627d5e](https://cgit.freebsd.org/src/commit/?id=6fa88a627d5e) and [6c69c6bb4c7f](https://cgit.freebsd.org/src/commit/?id=6c69c6bb4c7f) |
+| minidump live system | mhorne/allanjude | [0a5c04a8926e](https://cgit.freebsd.org/src/commit/?id=0a5c04a8926e) |
+| KTLS NIC receive | kib/hselaskey | [fe8c78f0d202](https://cgit.freebsd.org/src/commit/?id=fe8c78f0d202) |
+| Removed asym crypto support via /dev/crypto | jhb | [76681661be28](https://cgit.freebsd.org/src/commit/?id=76681661be2859622872c3a8a1bd68260403ddd0) |
+| Removed mips | imp | [c09981f1422e](https://cgit.freebsd.org/src/commit/?id=c09981f1422ef0d44042dacc5d1265392fba39f1) and others |
+| Removed svnlite | lwhsu | [a2bc17474b96](https://cgit.freebsd.org/src/commit/?id=a2bc17474b962ba9e29c4526356203fe48a549eb) and [0333fad1b7e0](https://cgit.freebsd.org/src/commit/?id=0333fad1b7e0) |
+| Removed an(4) | manu | [663b174b5b53](https://cgit.freebsd.org/src/commit/?id=663b174b5b53) |
+| NVMe error recovery rewrite | imp | [9bbd0a7ca999](https://cgit.freebsd.org/src/commit/?id=9bbd0a7ca999) and [502dc84a8b67](https://cgit.freebsd.org/src/commit/?id=502dc84a8b67) |
 
 # Have
 
@@ -19,16 +28,13 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 
 | Thing                     | Owner    | Committed / Review / Patch |
 | --                        | --       | -- |
-| Hole-punching for vnode | khng | [D27194](https://reviews.freebsd.org/D27194) |
 | bhyve/arm64 | andrew/UPB | [Andrews GitHub branch](https://github.com/CTSRD-CHERI/freebsd-morello/tree/bhyvearm64) |
 | Merging Morello support (from CHERI) | brooks/jhb | Timing/funding questions |
-| Convert stdio fileno to int | jhb | -- |
+| Convert stdio fileno to int | jhb | gnulib workaround needs resolving to make FILE opaque |
 | chacha20+poly1035 AEAD support for IPsec | ae | https://people.freebsd.org/~ae/ipsec-chacha.diff |
 | IPMI attachment for ARM64 | allanjude + Ampere | [D28707](https://reviews.freebsd.org/D28707) still needs a bit of work |
 | Hardware accelerated SHA2 in ZFS | allanjude | [PR252316](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252316) |
-| NVMe error recovery rewrite | imp | [D28583](https://reviews.freebsd.org/D28583) rare races need to be resolved before committing. |
 | Review inpcb synchronization (SMR) | glebius| in progress |
-| kvmclock driver for freebsd guests | allanjude | [D29733](https://reviews.freebsd.org/D29733) + port for testing on existing releases: sysutils/kvmclock-kmod |
 | ARM Mali Txxx/Gxx GPU support (Panfrost) | br | exists, but depends on [DRM for arm64 project](https://github.com/evadot/drm-subtree/) | 
 | camcorder / camdump | imp | Some polish and dependency issues |
 | 9pfs client (pass filesystem from host to guest) | stevek | (https://github.com/Juniper/virtfs) |
@@ -55,8 +61,6 @@ Things that someone needs in the next two years to support a product or service
 | Intel SKL HDA sound controller (in X1 carbon 7th gen) [firmware](https://github.com/thesofproject) https://bugs.freebsd.org/242527 | emaste |  |
 | DDC monitor control support (ddccontrol) | manu |  |
 | OpenVPN DCO https://github.com/OpenVPN/ovpn-dco | grehan |  |
-| minidump live system | mhorne/allanjude | work in progress |
-| KTLS NIC receive | kib/hselaskey | |
 | Inline IPsec (NIC assisted with encryption / decryption) | kib/hselaskey | |
 
 
@@ -106,23 +110,19 @@ Things we might like to deprecate for 14.0.  Further discussion may be required 
 
 | Thing                           | Owner     | Committed / Review / Patch |
 | --                              | --        | -- |
-| asym crypto support via /dev/crypto | jhb | [76681661be28](https://cgit.freebsd.org/src/commit/?id=76681661be2859622872c3a8a1bd68260403ddd0) |
 | Firewire support | imp | -- |
 | armv6? | imp/manu | -- |
 | telnetd | adrian?? | -- |
 | rlogin? rsh? libc(rcmd isruserok) | allanjude | -- |
 | ftpd (for ~~13~~14) | emaste/allanjude | -- |
 | smbfs v1 (last user of DES in the kernel) | emaste | Can't remove until there is a replacement |
-| mips | imp | [c09981f1422e](https://cgit.freebsd.org/src/commit/?id=c09981f1422ef0d44042dacc5d1265392fba39f1) and others |
 | arm SoC support review | imp | -- |
 | sendmail | !! (emaste) | -- |
 | boot loader 4th support | imp | -- |
-| svnlite | lwhsu | disabled in head [a2bc17474b96](https://cgit.freebsd.org/src/commit/?id=a2bc17474b962ba9e29c4526356203fe48a549eb) |
 | NIS "crypto" | cem | -- |
 | NIS | kaktus | Still has active users |
 | remaining ATM support (netgraph) | brooks | -- |
 | Lingering obsolete CAM drivers (FCP) | imp | -- |
-| Old Wireless Drivers -- an, etc | manu | [D30679](https://reviews.freebsd.org/D30679) |
 | publicwkey(5) | manu | [D30683](https://reviews.freebsd.org/D30683) [D30682](https://reviews.freebsd.org/D30682)|
 
 
