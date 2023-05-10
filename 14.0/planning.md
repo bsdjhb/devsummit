@@ -1,7 +1,7 @@
 FreeBSD 14.0 Planning
 ===
  
-# Completed
+# :heavy_check_mark: Completed
 
 Things that have been committed to the tree.
 
@@ -22,10 +22,20 @@ Things that have been committed to the tree.
 | Removed an(4) | manu | [663b174b5b53](https://cgit.freebsd.org/src/commit/?id=663b174b5b53) |
 | NVMe error recovery rewrite | imp | [9bbd0a7ca999](https://cgit.freebsd.org/src/commit/?id=9bbd0a7ca999) and [502dc84a8b67](https://cgit.freebsd.org/src/commit/?id=502dc84a8b67) |
 | Union GEOM facility | kirk | [c7996ddf8000](https://cgit.freebsd.org/src/commit/?id=c7996ddf8000cfb19a9e91a636f56747860d03d7) |
+| ISA soundcard driver retirement | emaste | [df51e63eb5d7 (ad1816)](https://cgit.FreeBSD.org/src/commit/?id=df51e63eb5d7e34e7a79da144e962dbf5e7cdb4c) [aa83e9b189d6 (ess)](https://cgit.FreeBSD.org/src/commit/?id=aa83e9b189d67c8aa772fed4f9dd26cbcbff4e3f) [754decef384a (gusc)](https://cgit.FreeBSD.org/src/commit/?id=754decef384a1ab30b39704264742fa33bfa365e) [5126e5eeeb5e (mss)](https://cgit.FreeBSD.org/src/commit/?id=5126e5eeeb5e07ceef3c809452a8c9f508b2d4d1) [5126e5eeeb5e (sbc/sb8/sb16)](https://cgit.FreeBSD.org/src/commit/?id=716924cb4832ea0a440daf09913a06f3166f243e) |
+| DPAA2 | bz | Working with Dmitry Salychev https://github.com/mcusim/freebsd-src/commits/lx2160acex7-dev |
+| wireguard module | emaste | probably merged in late June/July |
+| OpenVPN DCO | kp | [D34340](https://reviews.freebsd.org/D34340) |
+| 16k PAGE_SIZE on arm64 | andrew | [D34793](https://reviews.freebsd.org/D34793) |
+| ZFS support in makefs(8) | markj | [D35248](https://reviews.freebsd.org/D35248) |
+| ARM64 PMC: CMN-600 driver | ray / tsoome | [D32321](https://reviews.freebsd.org/D32321) |
+| ARM64 PMC: DMN-620 driver | ray / tsoome | [D32670](https://reviews.freebsd.org/D32670)
+| Review inpcb synchronization (SMR) | glebius| [de2d47842e88](https://cgit.freebsd.org/src/commit/?id=de2d47842e880281da07f2589b9ec558b42c09c1)|
+| Cross-building ftp/(mini-)memstick/disc1 images from non-FreeBSD | jrtc27 | various |
 
-# Have
+# :airplane: Have
 
-Things that already exist out of tree and can be upstreamed in the next 2 years (perhaps needing work to get to an upstreamable state)
+Things that already exist out of tree and can be upstreamed in the next 2 years / before the next release (perhaps needing work to get to an upstreamable state)
 
 | Thing                     | Owner    | Committed / Review / Patch |
 | --                        | --       | -- |
@@ -35,37 +45,31 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | chacha20+poly1035 AEAD support for IPsec | ae | https://people.freebsd.org/~ae/ipsec-chacha.diff |
 | IPMI attachment for ARM64 | allanjude + Ampere | [D28707](https://reviews.freebsd.org/D28707) still needs a bit of work |
 | Hardware accelerated SHA2 in ZFS | allanjude | [PR252316](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252316) |
-| Review inpcb synchronization (SMR) | glebius| in progress / committed? [de2d47842e880281da07f2589b9ec558b42c09c1](https://cgit.freebsd.org/src/commit/?id=de2d47842e880281da07f2589b9ec558b42c09c1)|
 | ARM Mali Txxx/Gxx GPU support (Panfrost) | br | exists, but depends on [DRM for arm64 project](https://github.com/evadot/drm-subtree/) | 
 | camcorder / camdump | imp | Some polish and dependency issues (reviews expected Q1 2023) |
 | 9pfs client (pass filesystem from host to guest) | stevek | (https://github.com/Juniper/virtfs) |
 | DTrace for VMs (from the host), but a giant diff | dstolfa | (https://github.com/cadets/freebsd) |
-| wireguard module | emaste | probably merged in late June/July |
 | virtqueue SDT probes (for monitoring requests/replies) | stevek | patches to be contributed |
 | Fix for mdroot race (md(4) may not add to rootdevnames before conf0 is generated) | stevek | patches to be contributed |
 | dwc_mmc SDIO | manu | -- |
 | Full GPU Passthough for bhyve(8) and edk2 | manu / corvin | -- |
 | DRM in base for amd64/armv7/arm64  | manu      | |
 | Debugger command restrictions via MAC | mhorne | [D35370](https://reviews.freebsd.org/D35370) |
-| ARM64 PMC: CMN-600 driver | ray / tsoome | [D32321](https://reviews.freebsd.org/D32321) |
-| ARM64 PMC: DMN-620 driver | ray / tsoome | [D32670](https://reviews.freebsd.org/D32670)
 | KASAN for ARM64 | mhorne | ~1-2 months |
 | tarfs (mount a compressed tar file) | des / thj | in progress |
-| OpenVPN DCO | kp | [D34340](https://reviews.freebsd.org/D34340) |
 | LinuxBoot support for amd64 and aarch64 | imp | In progress, reviews expected Q3 2022 |
 | nvme dynamic namespace support | imp | Patches in progress, reviews expected Q3 2022 |
 | Linux compatibility for sys/endian.h and byteswap.h | imp | [D32051](https://reviews.freebsd.org/D32051) mopping up compat issues | 
-| ZFS support in makefs(8) | markj | [D35248](https://reviews.freebsd.org/D35248) |
 | jectl (boot environments for jails) | rew / allanjude | [github: jectl](https://github.com/KlaraSystems/jectl) - testing |
 | Serial console over USB xHCI Debug | hrs | in progress, expected in July 2022 |
 | syslogd(8) rewrite to support TCP and TLS | hrs | in progress, expected in July 2022 |
 | Various bhyve suspend/resume fixes | | in review |
-| 16k PAGE_SIZE on arm64 | andrew | [D34793](https://reviews.freebsd.org/D34793) |
-| Cross-building releases | jrtc27 | not sure if all upstream |
 | arm64 boot from iscsi | emaste / dch | [src](https://github.com/khng300/freebsd-src/tree/khng/current/iscsi) https://reviews.freebsd.org/D34475 + https://reviews.freebsd.org/D34476 + https://reviews.freebsd.org/D34477 |
 | arm64 Scalable Vector Extension | andrew | -- |
-| DPAA2 | bz | Working with Dmitry Salychev https://github.com/mcusim/freebsd-src/commits/lx2160acex7-dev |
-
+| pmcstat for PIEs | jrtc27 | [D39595](https://reviews.freebsd.org/D39595) |
+| pmcstat for separate debug files | jrtc27 | in progress (reworking [D39626](https://reviews.freebsd.org/D39626)) |
+| lposix - add more posix functions to flua in base | kevans | [D39083](https://reviews.freebsd.org/D39083) |
+| jail devctl | dch / jamie | [jail_devctl](https://github.com/fubarnetes/kmod_devctl_jail/) approx 200LoC |
 
 # Need
 
@@ -125,7 +129,8 @@ Things that would be nice to have but aren't critical
 | OCI support for containers | dfr | -- |
 | nullfs for single files / overlayfs | dfr | -- |
 | native vt(4) backend for nvidia.ko | jhb | -- |
-
+| dhcpcd | emaste | [D22012](https://reviews.freebsd.org/D22012), [freebsd-net thread](https://lists.freebsd.org/pipermail/freebsd-net/2019-October/054474.html) |
+| tmux | ??? | if we don't get pkgbase then tmux in base as a panacea |
 
 # Axe Candidates
 
@@ -139,14 +144,13 @@ Things we might like to deprecate for 14.0.  Further discussion may be required 
 | telnetd | adrian?? | ported: net/freebsd-telnetd |
 | ftpd (for ~~13~~14) | emaste/allanjude | ported: ftp/freebsd-ftpd |
 | smbfs v1 (last user of DES in the kernel) | emaste | Can't remove until there is a replacement |
-| sendmail | !! (emaste) | -- |
+| sendmail | bapt | dma now default |
 | boot loader 4th support | imp | [PR257018](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=257018) solve first (lua/ZFS/... non-UEFI PXE loader too large) |
 | NIS "crypto" | cem | -- |
 | NIS | kaktus | Still has active users |
 | remaining ATM support (netgraph) | brooks | -- |
 | Lingering obsolete CAM drivers (FCP) (twe/twa) | imp | -- |
 | publicwkey(5) | manu | [D30683](https://reviews.freebsd.org/D30683) [D30682](https://reviews.freebsd.org/D30682)|
-| ISA soundcards | emaste | |
 | targ(4) CAM target driver | imp | -- |
 | fingerd | ?? | -- |
 | Security knob menu in installer | emaste | -- |
