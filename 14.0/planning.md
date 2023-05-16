@@ -32,6 +32,16 @@ Things that have been committed to the tree.
 | ARM64 PMC: DMN-620 driver | ray / tsoome | [D32670](https://reviews.freebsd.org/D32670)
 | Review inpcb synchronization (SMR) | glebius| [de2d47842e88](https://cgit.freebsd.org/src/commit/?id=de2d47842e880281da07f2589b9ec558b42c09c1)|
 | Cross-building ftp/(mini-)memstick/disc1 images from non-FreeBSD | jrtc27 | various |
+| chacha20+poly1035 AEAD support for IPsec | ae | [9f8f3a8e9ad4](https://cgit.freebsd.org/src/commit/?id=9f8f3a8e9ad4fbdcdfd14eb4d3977e587ab41341) |
+| IPMI attachment for ARM64 | allanjude + Ampere | [D28707](https://reviews.freebsd.org/D28707) |
+| Hardware accelerated SHA2 in ZFS | allanjude | [PR252316](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252316) |
+| Debugger command restrictions via MAC | mhorne | [D35370](https://reviews.freebsd.org/D35370) |
+| KASAN for ARM64 | mhorne | [89c52f9d59fa](https://cgit.freebsd.org/src/commit/?id=89c52f9d59fa796cc6cce44d34c93ec802abb15a) |
+| tarfs (mount a compressed tar file) | des / thj | [69d94f4c7608](https://cgit.freebsd.org/src/commit/?id=69d94f4c7608e41505996559367450706e91fbb8) |
+| LinuxBoot support for amd64 and aarch64 | imp | [7df08a14e3fd](https://cgit.freebsd.org/src/commit/?id=7df08a14e3fda5d0e7f3aef523ffcc7b3fae248d) (amd64) [75cbdbc9832e](https://cgit.freebsd.org/src/commit/?id=75cbdbc9832e72a59bdcb1c307a7a4ea77e29fce) (aarch64) |
+| Linux compatibility for sys/endian.h and byteswap.h | imp | [D32051](https://reviews.freebsd.org/D32051)  | 
+| Intel Icelake HWPMC | allanjude + Alexander@NetApp / possibly mhorne | merged by mav@ [52d973f52c07](https://cgit.freebsd.org/src/commit/?id=52d973f52c07b94909a6487be373c269988dc151) |
+| Intel Alder Lake HWPMC | mav | [18054d0220cf](https://cgit.freebsd.org/src/commit/?id=18054d0220cfc8df9c9568c437bd6fbb59d53c3c) |
 
 # :airplane: Have
 
@@ -42,9 +52,6 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | bhyve/arm64 | andrew/UPB | [Andrews GitHub branch](https://github.com/CTSRD-CHERI/freebsd-morello/tree/bhyvearm64) |
 | Merging Morello support (from CHERI) | brooks/jhb | Timing/funding questions, probably refactoring/prep for 14.x but no actual support |
 | Convert stdio fileno to int | jhb | gnulib workaround needs resolving to make FILE opaque |
-| chacha20+poly1035 AEAD support for IPsec | ae | https://people.freebsd.org/~ae/ipsec-chacha.diff |
-| IPMI attachment for ARM64 | allanjude + Ampere | [D28707](https://reviews.freebsd.org/D28707) still needs a bit of work |
-| Hardware accelerated SHA2 in ZFS | allanjude | [PR252316](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=252316) |
 | ARM Mali Txxx/Gxx GPU support (Panfrost) | br | exists, but depends on [DRM for arm64 project](https://github.com/evadot/drm-subtree/) | 
 | camcorder / camdump | imp | Some polish and dependency issues (reviews expected Q1 2023) |
 | 9pfs client (pass filesystem from host to guest) | stevek | (https://github.com/Juniper/virtfs) |
@@ -54,22 +61,18 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | dwc_mmc SDIO | manu | -- |
 | Full GPU Passthough for bhyve(8) and edk2 | manu / corvin | -- |
 | DRM in base for amd64/armv7/arm64  | manu      | |
-| Debugger command restrictions via MAC | mhorne | [D35370](https://reviews.freebsd.org/D35370) |
-| KASAN for ARM64 | mhorne | ~1-2 months |
-| tarfs (mount a compressed tar file) | des / thj | in progress |
-| LinuxBoot support for amd64 and aarch64 | imp | In progress, reviews expected Q3 2022 |
 | nvme dynamic namespace support | imp | Patches in progress, reviews expected Q3 2022 |
-| Linux compatibility for sys/endian.h and byteswap.h | imp | [D32051](https://reviews.freebsd.org/D32051) mopping up compat issues | 
 | jectl (boot environments for jails) | rew / allanjude | [github: jectl](https://github.com/KlaraSystems/jectl) - testing |
 | Serial console over USB xHCI Debug | hrs | in progress, expected in July 2022 |
 | syslogd(8) rewrite to support TCP and TLS | hrs | in progress, expected in July 2022 |
-| Various bhyve suspend/resume fixes | | in review |
+| Various bhyve suspend/resume fixes | | some merged |
 | arm64 boot from iscsi | emaste / dch | [src](https://github.com/khng300/freebsd-src/tree/khng/current/iscsi) https://reviews.freebsd.org/D34475 + https://reviews.freebsd.org/D34476 + https://reviews.freebsd.org/D34477 |
 | arm64 Scalable Vector Extension | andrew | -- |
 | pmcstat for PIEs | jrtc27 | [D39595](https://reviews.freebsd.org/D39595) |
 | pmcstat for separate debug files | jrtc27 | in progress (reworking [D39626](https://reviews.freebsd.org/D39626)) |
 | lposix - add more posix functions to flua in base | kevans | [D39083](https://reviews.freebsd.org/D39083) |
 | jail devctl | dch / jamie | [jail_devctl](https://github.com/fubarnetes/kmod_devctl_jail/) approx 200LoC |
+| Remember original interface name | allanjude | [D28247](https://reviews.freebsd.org/D28247) |
 
 # Need
 
@@ -83,7 +86,7 @@ Things that someone needs in the next two years to support a product or service
 | 802.11ac Wi-Fi support| bz | in progress |
 | TB3 / USB4 support | !! (see emaste if interested) | (erj and hps are interested) [usb4]https://github.com/hselasky/usb4 [dpc for hotplug]https://github.com/linnemannr/dpc |
 | DDC monitor control support (ddccontrol) | manu | almost done, kernel support is present, Linux tool needs to be ported |
-| Inline IPsec (NIC assisted with encryption / decryption) | kib/hselaskey | |
+| Inline IPsec (NIC assisted with encryption / decryption) | kib/hselaskey/np | |
 | Hetergenuous core scheduler (big.LITTLE / AlderLake) | emaste/mav/thj | -- |
 | Revisit security knob defaults | emaste/mw | -- |
 
@@ -112,9 +115,7 @@ Things that would be nice to have but aren't critical
 | exFat | delphij / cem | [D27376](https://reviews.freebsd.org/D27376) |
 | suspend/resume arm64 + riscv | mhorne | -- |
 | low power idle/S0ix support (see bwidawsky's earlier work) | jhb?? | (perhaps needs a link to Ben's branch) |
-| Intel Icelake HWPMC | allanjude + Alexander@NetApp / possibly mhorne | merged by mav@. Remaining problem is Alder Lake. |
 | Make USE_LINUX=yes work for arm64 and add arm64 ports | Vincent Milum Jr. / emaste | -- |
-| Remember original interface name | allanjude | [D28247](https://reviews.freebsd.org/D28247) |
 | detach bpf(9) from ifnet(9) | glebius | - |
 | synchronization for netgraph(9), most likely epoch(9) | glebius (can help advise) | - |
 | Better Sound Quirk System (looking for help) | imp/emaste | - |
@@ -141,15 +142,15 @@ Things we might like to deprecate for 14.0.  Further discussion may be required 
 | Firewire support | imp | -- |
 | armv6? | imp/manu | -- |
 | arm SoC support review | imp | done by manu? |
-| telnetd | adrian?? | ported: net/freebsd-telnetd |
+| telnetd | brooks | [0eea46fb1f83](https://cgit.freebsd.org/src/commit/?id=0eea46fb1f83f6091df92b5f2eae993cd6c2c873) |
 | ftpd (for ~~13~~14) | emaste/allanjude | ported: ftp/freebsd-ftpd |
 | smbfs v1 (last user of DES in the kernel) | emaste | Can't remove until there is a replacement |
 | sendmail | bapt | dma now default |
 | boot loader 4th support | imp | [PR257018](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=257018) solve first (lua/ZFS/... non-UEFI PXE loader too large) |
 | NIS "crypto" | cem | -- |
 | NIS | kaktus | Still has active users |
-| remaining ATM support (netgraph) | brooks | -- |
-| Lingering obsolete CAM drivers (FCP) (twe/twa) | imp | -- |
+| remaining ATM support (netgraph) | brooks | [af0cc0b22362](https://cgit.freebsd.org/src/commit/?id=af0cc0b22362153357d7b6783f64c4a11b1b03fe) |
+| Lingering obsolete CAM drivers (FCP) (twe/twa) | imp | [8722e05ae149](https://cgit.freebsd.org/src/commit/?id=8722e05ae1496968114f4be1a68bf5ea62cdbd78) (twa) [062a7b918fac](https://cgit.freebsd.org/src/commit/?id=062a7b918fac638e0cce0d8c087d7f2190c59b1e) (twe) |
 | publicwkey(5) | manu | [D30683](https://reviews.freebsd.org/D30683) [D30682](https://reviews.freebsd.org/D30682)|
 | targ(4) CAM target driver | imp | -- |
 | fingerd | ?? | -- |
