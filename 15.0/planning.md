@@ -67,7 +67,7 @@ Things that would be nice to have but aren't critical
 | Boot loader support for devmatch | imp manu | |
 | rewrite config(8) (in lua?)      | imp kevans | |
 | Cross kldxref                   | brooks / jhb | (kevans has a kind of hacky prototype or two) |
-| merge devmatch and devd (lib-ification) | imp | |
+| merge devmatch and devd (lib-ification) | imp | meena would like to help with this |
 | scheduler and VFS documentation coverage | mhorne | |
 | reduce the GIANT hacks | jhb imp | |
 |Better i18n support for vt(4) (CJK fonts, unicode fonts display (i.e., emoji), input method)|fanchung| Have a [IME PoC](https://wiki.freebsd.org/SummerOfCode2021Projects/InputMethodInFreeBSDVirtualTerminal) in GSoC'21 | 
@@ -75,7 +75,10 @@ Things that would be nice to have but aren't critical
 | Support for rust in the kernel | brooks | |
 | Support for rust in userland | brooks | |
 | netlink for ZFS (zfsd/zed) | allanjude | |
-| netlink to replace devd socket | ?? | |
+| netlink to replace devd socket | bapt | has Kernel part |
+| UCLification of login. conf | meena | allanjude has the beginnings of a patch: [D25365](https://reviews.freebsd.org/D25365) |
+| lixo for remaining network tools | meena | |
+| hierarchical dynamic login classes | ngor, meena | |
 
 
 # 🗑️ Axe Candidates 🪓
@@ -84,7 +87,7 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 
 | Thing                           | Owner     | Committed / Review / Patch |
 | --                              | --        | -- |
-| Firewire:fire:                  | imp       |    |
+| Firewire 🔥                     | imp       |    |
 | armv6                           | imp/manu  |    |
 | SoC support review              | imp/manu/mhorne |    |
 | ftpd                            | allanjude |    |
@@ -94,7 +97,7 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 | NIS server components            | des?    | |
 | publicwkey(5)                    | manu | [D30683](https://reviews.freebsd.org/D30683) [D30682](https://reviews.freebsd.org/D30682) |
 | targ(4) CAM target driver | imp |  |
-| fingerd | ?? |  |
+| fingerd | ?? | meena would like to volunteer for this |
 | 3dfx(4) & `*_isa` | jhb |  |
 | syscons(4) (deprecation at least) | emaste / manu |  |
 | review ethernet drivers (100mbps, obscure 1/10 gbps) | brooks |  |
