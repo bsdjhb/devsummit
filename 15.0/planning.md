@@ -55,7 +55,7 @@ Things that would be nice to have but aren't critical
 
 | Thing                           | Owner     | Committed / Review / Patch / Status |
 | --                              | --        | -- |
-| TPM support (GELI, ZFS)         | allanjude | -- |
+| TPM support (GELI, ZFS)         | allanjude | Initial patch at [bug #260138](https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=260138) |
 | smbfs replacement (v2 or better)| emaste jhixson | -- |
 | 9pfs client                     | bkumara, khng / Juniper        | -- |
 | overlayfs                        | thj / Klara | |
