@@ -8,7 +8,6 @@ Things that have been committed to the tree.
 | Thing                     | Owner    | Committed / Review / Patch |
 | --                        | --       | -- |
 
-
 # :airplane: Have
 
 Things that already exist out of tree and can be upstreamed in the next 2 years / before the next release (perhaps needing work to get to an upstreamable state)
@@ -30,8 +29,7 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | Integrate loader command line editing from my GSoC student's code | imp | Needs assistance |
 | Inline function tracing with dtrace | markj Christos | |
 | GSoC: squashfs                       | chuck | |
-
-
+| DRM |  | https://github.com/freebsd/drm-kmod |
 
 # 💸 Need
 
@@ -79,7 +77,6 @@ Things that would be nice to have but aren't critical
 | UCLification of login. conf | meena | allanjude has the beginnings of a patch: [D25365](https://reviews.freebsd.org/D25365) |
 | lixo for remaining network tools | meena | |
 | hierarchical dynamic login classes | ngor, meena | |
-
 
 # 🗑️ Axe Candidates 🪓
 
