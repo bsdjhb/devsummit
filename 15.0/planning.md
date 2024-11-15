@@ -17,6 +17,16 @@ Things that have been committed to the tree.
 | per-file nullfs                 | dfr | [521fbb722c3](https://cgit.freebsd.org/src/commit/?id=521fbb722c33663cf00a83bca70ad7cb790687b3) (doesn't support sockets) |
 | Port of the 9p filesystem | dfr | [e97ad33a89a7](https://cgit.freebsd.org/src/commit/?id=e97ad33a89a78f55280b0485b3249ee9b907a718) |
 | NVMe Reset / Recovery Improvements | imp | [aa41354349c1](https://cgit.freebsd.org/src/commit/?id=aa41354349c16ea7220893010df78b47d67d0f74) |
+| don't ship OpenSSL FIPS | gtetlow | [86dd740dd73a](https://cgit.freebsd.org/src/commit/?id=86dd740dd73aa88477ff450b2359abda1ad68534) |
+| arm64 SVE                 | andrew   | [332c426328db](https://cgit.freebsd.org/src/commit/?id=332c426328dbb30a6b2e69d9b1e8298d77d85bd1) |
+| AMD IOMMU driver | kib   | [0f5116d7efe3](https://cgit.freebsd.org/src/commit/?id=0f5116d7efe33c81f0b24b56eec78af37898f500)       |
+| SO_SPLICE        | Klara / markj | [a1da7dc1cdad](https://cgit.freebsd.org/src/commit/?id=a1da7dc1cdad8c000622a7b23ff5994ccfe9cac6) |
+| riscv64 bhyve | br | [d3916eace506](https://cgit.freebsd.org/src/commit/?id=d3916eace506b8ab23537223f5c92924636a1c41) [7ab1a32cd43c](https://cgit.freebsd.org/src/commit/?id=7ab1a32cd43cbae61ad4dd435d6a482bbf61cb52)  |
+| Updates to syscall table generation in Lua (libification of makesyscalls.lua) | brooks | [9ded074e875c](https://cgit.freebsd.org/src/commit/sys/tools/syscalls?id=9ded074e875c29cb92d5f643801990d7bb23cca4) |
+| arm64 support for gve(4), needed by arm64 instance of GCE  | delphij, kibab (lwhsu's pushing them)| [54dfc97b0bd9](https://cgit.freebsd.org/src/commit/?id=54dfc97b0bd99f1c3bcbb37357cf28cd81a7cf00)|
+| Removed ACPI-safe timer | cperciva | [00d061855deb](https://cgit.freebsd.org/src/commit/?id=00d061855deb93df5d709c8a794985ebb55012f8)|
+| Removed support for swapping out kernel stacks | markj | [6aa98f78cc6e](https://cgit.freebsd.org/src/commit/?id=6aa98f78cc6e527b801cabddf6881ab5c9256934) |
+| Removed armv6                   | imp/manu  | [7818c2d37c2c](https://cgit.freebsd.org/src/commit/Makefile?id=7818c2d37c2c600fc9ad6f2a0951e50dd21b17c8)  |
 
 # :airplane: Have
 
@@ -26,15 +36,14 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | --                        | --       | -- |
 | copy_file_range() in mv(1) | pjd | [D45243](https://reviews.freebsd.org/D45243) |
 | better copy_file_range() fallback/wrapper | pjd | [D45243](https://reviews.freebsd.org/D45243) |
-| arm64 SVE                 | andrew   | [D43306](https://reviews.freebsd.org/D43306) |
-| amd64/arm64 rescue kernel | markj / Klara | |
+| amd64/arm64 rescue kernel | markj / Klara | draft [D47358](https://reviews.freebsd.org/D47358) |
 | iovec wrappers         | brooks | |
 | Hardware watchpoints in bhyve guests | jhb Bojan | |
 | Inline function tracing with dtrace | markj Christos | |
 | GSoC: squashfs                       | chuck | |
 | Improvments to Powerd on multicore laptops | cperciva | (talk to gallatin@) |
-| Assorted CHERI pre-reqs (ABI bits) | brooks | |
-| Hierarchical ratelimits in ZFS | pjd | [16205](https://github.com/openzfs/zfs/pull/16205) |
+| Assorted CHERI pre-reqs (ABI bits) | brooks | [cade8f6c118f](https://cgit.freebsd.org/src/commit/?id=cade8f6c118f304eb7c91a1d423b4a97ee466284) |
+| Hierarchical ratelimits in ZFS | pjd | [ZFS pull request 16205](https://github.com/openzfs/zfs/pull/16205) |
 | simple library ABI checker | brooks | prototype [D44271](https://reviews.freebsd.org/D44271) |
 | Graphical installer | khorben | [D44279](https://reviews.freebsd.org/D44279) [D44670](https://reviews.freebsd.org/D44670) [D44671](https://reviews.freebsd.org/D44671) [D44672](https://reviews.freebsd.org/D44672) [D44673](https://reviews.freebsd.org/D44673) [D44674](https://reviews.freebsd.org/D44674) [D45000](https://reviews.freebsd.org/D45000) |
 |bhyve direct Linux loader|robn|(see [post to freebsd-virtualization](https://lists.freebsd.org/archives/freebsd-virtualization/2024-May/002112.html))|
@@ -43,19 +52,16 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 
 | Thing            | Owner | Status |
 | --               | --    | --     |
-| AMD IOMMU driver | kib   |        |
 | certctl rewrite  | des   | [D42320](https://reviews.freebsd.org/D42320) |
 | DRM back in base | manu  | 90% done |
 | devd events for disk errors additional info | imp | 75% |
 | Modularize default TCP stack | jtl | Code done; needs UX support to make it easy for users to use |
 | UnionFS that actually works! (overlayfs) | olce | Starting (roadmap exists) |
 | Standards-compliant, practical scheduling priorities | olce | 75% |
-| SO_SPLICE        | Klara / markj | just starting |
 | rootless bhyve   | markj | in progress
 | kboot support for amd64    | imp    | Late Summer 2024 80% |
 | Lua 5.4.7 update for flua and boot loader | imp | release in coming weeks, looks "boring" |
 | Integrate loader command line editing from my GSoC student's code | imp | git rebased branch available, need assistance |
-| riscv64 bhyve | br | [boots FreeBSD in simulator](https://wiki.freebsd.org/riscv/bhyve) |
 
 # 💸 Need
 
@@ -83,7 +89,6 @@ Things that someone needs in the next two years to support a product or service
 | S0ix low idle | obiwac, jhb | |
 | Native inotify(2) | tcberner | Many ports need this |
 | What OpenSSL version should 15.0 ship with | gtetlow | run newer version in main to get soak time |
-| don't ship OpenSSL FIPS | gtetlow | The module is not validated, don't let people get fooled |
 
 # 🥺 Want 🙏
 
@@ -96,7 +101,6 @@ Things that would be nice to have but aren't critical
 | ZFS encrypted boot support      | tsoome allanjude | UEFI only |
 | smbfs replacement (v2 or better)| emaste jhixson | -- |
 | virtio-fs | ??? asomers | imp says patches exist |
-| Updates to syscall table generation in Lua (libification of makesyscalls.lua) | imp | |
 | Streamlined installer (single disk, better defaults, i.e. mash enter until done)           | emaste brd | |
 | extend per-file nullfs for sockets/fifos | dfr | |
 | more container support (OCI)   | dfr | need volunteers. Containerd port needs maintainer. Official images/repo |
@@ -105,7 +109,7 @@ Things that would be nice to have but aren't critical
 | rewrite config(8) (in lua?)      | imp kevans |  |
 | merge devmatch and devd (lib-ification) | imp | meena would like to help with this |
 | scheduler and VFS documentation coverage | mhorne, olce | |
-| Scheduling on non-uniform cores (P, E) | olce, mkarels | I think others are interested |
+| Scheduling on non-uniform cores (P, E) | olce | I think others are interested |
 | finish kernel doc (man section 9) audit | mhorne | |
 | reduce the GIANT hacks | jhb imp | |
 | Better i18n support for vt(4) (CJK fonts, unicode fonts display (i.e., emoji), input method)|fanchung| Have a [IME PoC](https://wiki.freebsd.org/SummerOfCode2021Projects/InputMethodInFreeBSDVirtualTerminal) in GSoC'21 | 
@@ -118,7 +122,6 @@ Things that would be nice to have but aren't critical
 | UCLification of login. conf | meena | allanjude has the beginnings of a patch: [D25365](https://reviews.freebsd.org/D25365) |
 | libxo for remaining network tools | meena |can I ask people ping phil@ on proposed new tags |
 | hierarchical dynamic login classes | ngor, meena | |
-| arm64 support for gve(4), needed by arm64 instance of GCE  | delphij, kibab (lwhsu's pushing them)|
 | Remove MAC "label" limitations | allanjude des | use OSD? Build on bapt's per-jail mechanism used for mac_do |
 | PID namespaces for jails | pjd dfr allanjude | which other namespaces might you want? |
 |Import dhcpcd into base|| Initial (dated) version here: [D22012](https://reviews.freebsd.org/D22012)|
@@ -135,7 +138,6 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 | Thing                           | Owner     | Committed / Review / Patch |
 | --                              | --        | -- |
 | Firewire 🔥                     | imp       | later rather than sooner (do we strip out disk support sooner has a GIANT locked CAM driver)   |
-| armv6                           | imp/manu  |    |
 | i386 kernel | imp | timing? |
 | powerpc, powerpcsce kernel| imp | |
 | PS3 🎮| imp | nobody uses (we need ps5 port!)|
@@ -154,11 +156,9 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 | syscons(4) (deprecation at least) | emaste / manu |  |
 | review ethernet drivers (100mbps, obscure 1/10 gbps) | brooks |  |
 | review CAM drivers (pms(4),hpt*, siis, mvs, etc) | imp | |
-| ACPI-safe timer | cperciva | [00d061855deb](https://cgit.freebsd.org/src/commit/?id=00d061855deb93df5d709c8a794985ebb55012f8)|
 | freebsd-update | cperciva | once pkgbase is ready |
 | 32bit platforms (kernels, keep compat32)    | jhb | |
 | arm\*soft removal (support for building a full soft system, which is all that remains after I removed the libsoft hack builds and ld.so support) | imp | |
-| support for swapping out kernel stacks | markj | [6aa98f78cc6e](https://cgit.freebsd.org/src/commit/?id=6aa98f78cc6e527b801cabddf6881ab5c9256934) |
 | support for !SMP amd64 kernels | markj | consensus? +1 +1 |
 
 # Legend
