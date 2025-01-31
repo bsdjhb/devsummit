@@ -27,6 +27,9 @@ Things that have been committed to the tree.
 | Removed ACPI-safe timer | cperciva | [00d061855deb](https://cgit.freebsd.org/src/commit/?id=00d061855deb93df5d709c8a794985ebb55012f8)|
 | Removed support for swapping out kernel stacks | markj | [6aa98f78cc6e](https://cgit.freebsd.org/src/commit/?id=6aa98f78cc6e527b801cabddf6881ab5c9256934) |
 | Removed armv6                   | imp/manu  | [7818c2d37c2c](https://cgit.freebsd.org/src/commit/Makefile?id=7818c2d37c2c600fc9ad6f2a0951e50dd21b17c8)  |
+| Removed publicwkey(5)                    | manu | [9dcb984251b3](https://cgit.freebsd.org/src/commit/?id=9dcb984251b35ab1959bcaafcb3f129c8ae2f25b) |
+| Inline IPSEC acceleration       | kib       |  [ef2a572bf6bd](https://cgit.freebsd.org/src/commit/?id=ef2a572bf6bdcac97ef29)
+| Removed gvinum | jhb / emaste | [f87bb5967670](https://cgit.freebsd.org/src/commit/?id=f87bb5967670914f2f6d9ab4c732ab083a61b4c8) [e51036fbf3f8](https://cgit.freebsd.org/src/commit/?id=e51036fbf3f896e8802ed0a5ef06ae1bcd7c0737) |
 
 # :airplane: Have
 
@@ -62,6 +65,7 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | kboot support for amd64    | imp    | Late Summer 2024 80% |
 | Lua 5.4.7 update for flua and boot loader | imp | release in coming weeks, looks "boring" |
 | Integrate loader command line editing from my GSoC student's code | imp | git rebased branch available, need assistance |
+| S0ix low idle | obiwac, jhb | |
 
 # 💸 Need
 
@@ -81,14 +85,15 @@ Things that someone needs in the next two years to support a product or service
 | Pre-commit CI ports                | lwhsu will check with bapt and decke | bofh seems have some PoC|
 | Universal Flash Storage driver | loos | Needed for some embedded deploys, but more universal in the future. Coming to Intel platforms soon. Also useful for LinuxBoot. |
 | DTrace's `-C` (capital C) to work again | antranigv, markj | PR not submitted yet, just run `dtrace -c` and see many include |
-| Refined bsd-user support for release process | imp, dfr, cperciva  | 32 on 64 issues, update very old qemu-bsd-user-static port |
-| refine bsd-user binfmt etc to be jail friendly | cperciva, imp | Colin would like to have per-jail settings for these things |
+| ~~Refined bsd-user support for release process~~ | imp, dfr, cperciva  | 32 on 64 issues, update very old qemu-bsd-user-static port. No longer relevant for release engineering once STA work is done. |
+| ~~refine bsd-user binfmt etc to be jail friendly~~ | cperciva, imp | ~~Colin would like to have per-jail settings for these things.~~  No longer relevant for release engineering once STA work is done. |
 | bsd-user + poudriere support for RISCV | imp, mhorne, jrtc27 | Package building totally broken, but basic stuff works, needs work so we can have riscv pacakges again |
 | github runner for pull requests | imp | Possible ways out of cirrus-ci hole |
 | github actions for quality of experience for external contributors | imp | Need help here |
-| S0ix low idle | obiwac, jhb | |
 | Native inotify(2) | tcberner | Many ports need this |
 | What OpenSSL version should 15.0 ship with | gtetlow | run newer version in main to get soak time |
+| PCI-express Activate-State Power Management (ASPM) | jhb | required for proper PCI-express native HotPlug on some systems |
+| PCI-express Downstream Port Control (DPC) | jhb | required for Thunderbolt, supersedes PCI-express native HotPlug |
 
 # 🥺 Want 🙏
 
@@ -137,9 +142,9 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 
 | Thing                           | Owner     | Committed / Review / Patch |
 | --                              | --        | -- |
-| Firewire 🔥                     | imp       | later rather than sooner (do we strip out disk support sooner has a GIANT locked CAM driver)   |
+| Firewire 🔥                     | imp       | later rather than sooner (do we strip out disk support sooner has a GIANT locked CAM driver) (Do we move to 16? YES)  |
 | i386 kernel | imp | timing? |
-| powerpc, powerpcsce kernel| imp | |
+| powerpc, powerpcspe kernel| imp | |
 | PS3 🎮| imp | nobody uses (we need ps5 port!)|
 | powerpc64, powerpc64le (whole powerpc platform) | | https://bugs.freebsd.org/271826 FreeBSD is disastrously slow on PowerMac G5... |
 | SoC support review              | imp/manu/mhorne |    |
@@ -149,10 +154,9 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 | bootloader forth support 🔪     | imp/stevek |   |
 | warn if booting installer in EFI, but requesting BIOS install | | |
 | NIS server components            | ~~des?~~    | Still using so please add to ports (chuck) |
-| publicwkey(5)                    | manu | [D30683](https://reviews.freebsd.org/D30683) [D30682](https://reviews.freebsd.org/D30682) |
 | targ(4) CAM target driver | imp |  |
 | fingerd | ?? | meena would like to volunteer for this |
-| 3dfx(4) & `*_isa` | jhb |  |
+| 3dfx(4) & `*_isa` | jhb | |
 | syscons(4) (deprecation at least) | emaste / manu |  |
 | review ethernet drivers (100mbps, obscure 1/10 gbps) | brooks |  |
 | review CAM drivers (pms(4),hpt*, siis, mvs, etc) | imp | |
