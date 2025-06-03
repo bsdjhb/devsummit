@@ -50,6 +50,9 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | simple library ABI checker | brooks | prototype [D44271](https://reviews.freebsd.org/D44271) |
 | Graphical installer | khorben | [D44279](https://reviews.freebsd.org/D44279) [D44670](https://reviews.freebsd.org/D44670) [D44671](https://reviews.freebsd.org/D44671) [D44672](https://reviews.freebsd.org/D44672) [D44673](https://reviews.freebsd.org/D44673) [D44674](https://reviews.freebsd.org/D44674) [D45000](https://reviews.freebsd.org/D45000) |
 |bhyve direct Linux loader|robn|(see [post to freebsd-virtualization](https://lists.freebsd.org/archives/freebsd-virtualization/2024-May/002112.html))|
+| bsdinstall support for pkgbase | emaste manu? | |
+| mfsBSD in base | dch,mm,soobinrho? | [D41704](https://reviews.freebsd.org/D41704) [D41705](https://reviews.freebsd.org/D41705) [D41706](https://reviews.freebsd.org/D41706) |
+| blocklistd update | jlduran? | upstream changes allow more blocklisting, some work already in [PR104](https://github.com/jlduran/freebsd-src/pull/104) |
 
 # 🚧 In Progress
 
@@ -66,6 +69,10 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | Lua 5.4.7 update for flua and boot loader | imp | release in coming weeks, looks "boring" |
 | Integrate loader command line editing from my GSoC student's code | imp | git rebased branch available, need assistance |
 | S0ix low idle | obiwac, jhb | |
+| Native inotify(2) | markj | [D50315](https://reviews.freebsd.org/D50315) Many ports need this |
+| Integrate pkgbase into release and so processes | re, so | can we please have a makefile per package|
+| Pre-commit CI src, doc                  | lwhsu imp bofh | `make ci` WIP. Need to integrate with oth|
+| Universal Flash Storage driver | loos | Needed for some embedded deploys, but more universal in the future. Coming to Intel platforms soon. Also useful for LinuxBoot. |
 
 # 💸 Need
 
@@ -74,23 +81,18 @@ Things that someone needs in the next two years to support a product or service
 | Thing                  | Owner     | Committed / Review / Patch / Status |
 | --                     | --        | -- |
 | new ELF kernel dump format         | jhb markj | |
-| bsdinstall support for pkgbase | emaste manu? | |
-| Integrate pkgbase into release and so processes | re, so | can we please have a makefile per package|
 | pkg groups | bapt | |
 | Poudriere support for toolchain-less jails | allanjude | |
 | External toolchain support          | brooks | |
-| Pre-commit CI src, doc                  | lwhsu imp bofh | `make ci` WIP. Need to integrate with oth|
 | Improve `make ci` to make it useful for committers | imp, bofh| |
 | Improve `make ci` to make it useful for things like landing github pull requests | imp | |
 | Pre-commit CI ports                | lwhsu will check with bapt and decke | bofh seems have some PoC|
-| Universal Flash Storage driver | loos | Needed for some embedded deploys, but more universal in the future. Coming to Intel platforms soon. Also useful for LinuxBoot. |
 | DTrace's `-C` (capital C) to work again | antranigv, markj | PR not submitted yet, just run `dtrace -c` and see many include |
 | ~~Refined bsd-user support for release process~~ | imp, dfr, cperciva  | 32 on 64 issues, update very old qemu-bsd-user-static port. No longer relevant for release engineering once STA work is done. |
 | ~~refine bsd-user binfmt etc to be jail friendly~~ | cperciva, imp | ~~Colin would like to have per-jail settings for these things.~~  No longer relevant for release engineering once STA work is done. |
 | bsd-user + poudriere support for RISCV | imp, mhorne, jrtc27 | Package building totally broken, but basic stuff works, needs work so we can have riscv pacakges again |
 | github runner for pull requests | imp | Possible ways out of cirrus-ci hole |
 | github actions for quality of experience for external contributors | imp | Need help here |
-| Native inotify(2) | tcberner | Many ports need this |
 | What OpenSSL version should 15.0 ship with | gtetlow | run newer version in main to get soak time |
 | PCI-express Activate-State Power Management (ASPM) | jhb | required for proper PCI-express native HotPlug on some systems |
 | PCI-express Downstream Port Control (DPC) | jhb | required for Thunderbolt, supersedes PCI-express native HotPlug |
