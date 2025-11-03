@@ -1,6 +1,37 @@
 FreeBSD 15.0 Planning
 ===
- 
+
+# Blockers
+
+Things that need to be finished for the release.
+
+| Thing                     | Owner    | Committed / Review / Patch |
+| --                        | --       | -- |
+| changes in pkgbase package publishing (secteam, etc.) | cperciva / gtetlow | |
+| supported binary upgrade path from 14.x to 15.x | emaste | |
+| updating manpages for pkgbase | ziaee | |
+| updating handbook for pkgbase | ziaee, dch | |
+| specific article for existing users | emaste / mark p | |
+| pkg handles kernel vs userland mismatches | | |
+| boot environment integration | allanjude | |
+| enumerating user upgrade stories (post-mortem friction logs) | | |
+| Trim SD card images | imp / cperciva | |
+| Rename BASIC-CI VM image | cperciva | |
+| Deprecate memstick images in favor of ISOs | emaste | |
+| OpenZFS version (2.4?) | mav / mm | |
+| Set deadline for contrib imports (1 Sep 25) | cperciva | |
+
+# User Stories for Base System Management
+
+| Story / Requirement | Owner |
+| -- | -- |
+| minor release upgrades should be intentional | |
+| pkgbasify should DTRT on systems which don't have everything installed | |
+| pkg and backup kernels / rtld / loader | |
+| updating EFI boot loader | imp |
+| separate /usr partition on UFS | |
+| installing onto dual-boot system (existing Windows install) from memstick | |
+
 # :heavy_check_mark: Completed
 
 Things that have been committed to the tree.
@@ -30,6 +61,14 @@ Things that have been committed to the tree.
 | Removed publicwkey(5)                    | manu | [9dcb984251b3](https://cgit.freebsd.org/src/commit/?id=9dcb984251b35ab1959bcaafcb3f129c8ae2f25b) |
 | Inline IPSEC acceleration       | kib       |  [ef2a572bf6bd](https://cgit.freebsd.org/src/commit/?id=ef2a572bf6bdcac97ef29)
 | Removed gvinum | jhb / emaste | [f87bb5967670](https://cgit.freebsd.org/src/commit/?id=f87bb5967670914f2f6d9ab4c732ab083a61b4c8) [e51036fbf3f8](https://cgit.freebsd.org/src/commit/?id=e51036fbf3f896e8802ed0a5ef06ae1bcd7c0737) |
+| FIB-aware listening sockets | Klara / markj | [da806e8db685](https://cgit.freebsd.org/src/commit/?id=da806e8db685eead02bc67888b16ebac6badb6b6) |
+| SO_SPLICE | Klara / markj | [a1da7dc1cdad](https://cgit.freebsd.org/src/commit/?id=a1da7dc1cdad8c000622a7b23ff5994ccfe9cac6) |
+| pkgbase support in the installer | emaste | Many commits (old WIP https://github.com/ifreund/freebsd-src/tree/bsdinstall-pkgbase) |
+| OpenSSL update | khorben, ngie | 046c625e9382e17da953767b881aaa782fa73af8 |
+| 32-bit platform deprecation | jhb | |
+| jemalloc update | imp (?) | https://reviews.freebsd.org/D41421 |
+| Native inotify(2) | markj | [D50315](https://reviews.freebsd.org/D50315) Many ports need this |
+| Universal Flash Storage (UFS) driver | jaeyoon | Needed for some embedded deploys, but more universal in the future. Coming to Intel platforms soon. Also useful for LinuxBoot.<br> The implementation from Samsung: https://reviews.freebsd.org/D50370 (partical, more to come) |
 
 # :airplane: Have
 
@@ -50,9 +89,9 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | simple library ABI checker | brooks | prototype [D44271](https://reviews.freebsd.org/D44271) |
 | Graphical installer | khorben | [D44279](https://reviews.freebsd.org/D44279) [D44670](https://reviews.freebsd.org/D44670) [D44671](https://reviews.freebsd.org/D44671) [D44672](https://reviews.freebsd.org/D44672) [D44673](https://reviews.freebsd.org/D44673) [D44674](https://reviews.freebsd.org/D44674) [D45000](https://reviews.freebsd.org/D45000) |
 |bhyve direct Linux loader|robn|(see [post to freebsd-virtualization](https://lists.freebsd.org/archives/freebsd-virtualization/2024-May/002112.html))|
-| bsdinstall support for pkgbase | emaste manu? | |
 | mfsBSD in base | dch,mm,soobinrho? | [D41704](https://reviews.freebsd.org/D41704) [D41705](https://reviews.freebsd.org/D41705) [D41706](https://reviews.freebsd.org/D41706) |
 | blocklistd update | jlduran? | upstream changes allow more blocklisting, some work already in [PR104](https://github.com/jlduran/freebsd-src/pull/104) |
+
 
 # 🚧 In Progress
 
@@ -69,10 +108,11 @@ Things that already exist out of tree and can be upstreamed in the next 2 years 
 | Lua 5.4.7 update for flua and boot loader | imp | release in coming weeks, looks "boring" |
 | Integrate loader command line editing from my GSoC student's code | imp | git rebased branch available, need assistance |
 | S0ix low idle | obiwac, jhb | |
-| Native inotify(2) | markj | [D50315](https://reviews.freebsd.org/D50315) Many ports need this |
 | Integrate pkgbase into release and so processes | re, so | can we please have a makefile per package|
-| Pre-commit CI src, doc                  | lwhsu imp bofh | `make ci` WIP. Need to integrate with oth|
-| Universal Flash Storage driver | loos | Needed for some embedded deploys, but more universal in the future. Coming to Intel platforms soon. Also useful for LinuxBoot. |
+| Pre-commit CI src, doc                  | lwhsu imp bofh | `cd tests/ci && make ci` merged. Need more tests and integrate with other things better|
+| Kernel mode USB video class (UVC) | Dell, lwhsu | Code is under clean-up for submitting to public review |
+| CSPRNG Quality Monitoring | Klara | Development is funded, starting next week |
+
 
 # 💸 Need
 
@@ -96,6 +136,7 @@ Things that someone needs in the next two years to support a product or service
 | What OpenSSL version should 15.0 ship with | gtetlow | run newer version in main to get soak time |
 | PCI-express Activate-State Power Management (ASPM) | jhb | required for proper PCI-express native HotPlug on some systems |
 | PCI-express Downstream Port Control (DPC) | jhb | required for Thunderbolt, supersedes PCI-express native HotPlug |
+| IPv6 Stack modernization | | https://reviews.freebsd.org/D49681 (RFC 7217)<br> https://reviews.freebsd.org/D50108 (RFC 8981) |
 
 # 🥺 Want 🙏
 
@@ -107,7 +148,7 @@ Things that would be nice to have but aren't critical
 | TPM support (GELI, ZFS)         | allanjude tsoome | -- |
 | ZFS encrypted boot support      | tsoome allanjude | UEFI only |
 | smbfs replacement (v2 or better)| emaste jhixson | -- |
-| virtio-fs | ??? asomers | imp says patches exist |
+| virtio-fs | ??? asomers | https://reviews.freebsd.org/D46295 |
 | Streamlined installer (single disk, better defaults, i.e. mash enter until done)           | emaste brd | |
 | extend per-file nullfs for sockets/fifos | dfr | |
 | more container support (OCI)   | dfr | need volunteers. Containerd port needs maintainer. Official images/repo |
@@ -119,7 +160,7 @@ Things that would be nice to have but aren't critical
 | Scheduling on non-uniform cores (P, E) | olce | I think others are interested |
 | finish kernel doc (man section 9) audit | mhorne | |
 | reduce the GIANT hacks | jhb imp | |
-| Better i18n support for vt(4) (CJK fonts, unicode fonts display (i.e., emoji), input method)|fanchung| Have a [IME PoC](https://wiki.freebsd.org/SummerOfCode2021Projects/InputMethodInFreeBSDVirtualTerminal) in GSoC'21 | 
+| Better i18n support for vt(4) (CJK fonts, unicode fonts display (i.e., emoji), input method)|fan, lwhsu (help needed)| Have a [IME PoC](https://wiki.freebsd.org/SummerOfCode2021Projects/InputMethodInFreeBSDVirtualTerminal) in GSoC'21 | 
 | tarfs as root                 | imp | |
 | overlayfs (for tarfs)         | Klara / allanjude | |
 | Support for rust in the kernel | brooks | |
@@ -136,7 +177,11 @@ Things that would be nice to have but aren't critical
 | ability to wire file content in memory while hashing | sjg (wants) | for mac_veriexec |
 | update flua to have more standard bindings, more 'common' bindings and some FreeBSD system calls. | markj, imp | boot loader also uses Lua, so some care is needed here. |
 | priv(1) | pjd | ability to reduce process' privileges |
-| rctl | dfr, pjd? | current rctl does not work well for resource limiting jails |
+| rctl | dfr, pjd?, Klara | current rctl does not work well for resource limiting jails |
+| multicast forwarding performance | Klara | Planning stages |
+| S3 suspend/resume | | |
+| secure boot support | | |
+
 
 # 🗑️ Axe Candidates 🪓
 
@@ -172,3 +217,7 @@ Things we might like to deprecate.  Further discussion may be required to reach 
 | -- | -- |
 | ?? | Status is in question |
 | !! | Needs a new owner |
+
+
+
+
